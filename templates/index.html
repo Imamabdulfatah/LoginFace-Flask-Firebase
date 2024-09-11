@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Face Login</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* Default style for larger frames */
+      #video,
+      #canvas {
+        width: 400px;
+        height: 280px;
+        border: 2px solid #000;
+        object-fit: cover;
+      }
+
+      /* Media query for smaller screens */
+      @media (max-width: 425px) and (max-height: 616px) {
+        #video,
+        #canvas {
+          width: 150px;
+          height: 150px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+          <!-- Video element with responsive frame -->
+          <video id="video" class="img-fluid border" autoplay></video>
+          <br /><br />
+          <button class="btn btn-primary d-none" id="capture_btn">
+            Take Photo
+          </button>
+          <br /><br />
+          <button class="btn btn-success d-none" id="register_btn">
+            REGISTER
+          </button>
+          <button class="btn btn-primary" id="login_btn">Login </button>
+        </div>
+      </div>
+      <div class="mb-5">
+        <a class="btn btn-success" href="/all-data">Semua Data</a>
+        <a class="btn btn-success" href="/sign-in">Mendaftarkan Wajah</a>
+      </div>
+    </div>
+
+    <!-- Canvas element for capturing photos -->
+    <canvas id="canvas" width="400" height="280" style="display: none"></canvas>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Link to external JS file -->
+    <script
+      type="module"
+      src="{{ url_for('static', filename='js/script.js')}}"
+    ></script>
+  </body>
+</html>

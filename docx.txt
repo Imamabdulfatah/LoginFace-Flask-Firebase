@@ -1,0 +1,55 @@
+Cara pengoperasian program
+
+1. Install python versi 3.8 atau 3.9
+2. install library di requirements.txt      ( pip install -r requirements.txt  )
+3. masuk ke folder loginface/ folder utama
+4. jalankan program dengan    (  flask run  )
+
+
+Apa itu haarcascade_frontalface_default.xml?
+haarcascade_frontalface_default.xml adalah file XML yang berisi data model deteksi wajah menggunakan metode Haar Cascade. Ini adalah salah satu teknik deteksi objek yang dikembangkan oleh Paul Viola dan Michael Jones pada tahun 2001. Metode ini menggunakan serangkaian fitur Haar (fitur yang mirip dengan filter gambar hitam dan putih) untuk mendeteksi objek, dalam hal ini wajah, dalam gambar atau video.
+
+Cara Kerja Haar Cascade
+Training: Haar Cascade adalah hasil dari proses pelatihan yang menggunakan banyak gambar positif (gambar dengan objek wajah) dan gambar negatif (gambar tanpa objek wajah). Proses pelatihan menghasilkan serangkaian fitur yang mampu membedakan wajah dari non-wajah.
+
+Fitur Haar: Fitur Haar adalah pola persegi panjang sederhana yang diambil dari gambar untuk menganalisis variasi cahaya antara area terang dan gelap. Beberapa contoh fitur termasuk perbedaan antara daerah sekitar mata dan pipi atau perbedaan antara bagian atas dan bawah hidung.
+
+Cascade Classifier: Nama "cascade" berasal dari cara pengklasifikasi bekerja. Klasifikasi dilakukan secara bertahap. Awalnya, fitur yang lebih umum (dan lebih cepat untuk dihitung) digunakan untuk menyaring sebagian besar area gambar yang tidak mengandung wajah. Kemudian, fitur yang lebih kompleks digunakan pada area yang tersisa.
+
+Contoh Penggunaan haarcascade_frontalface_default.xml
+Untuk menggunakan file ini, biasanya digunakan dalam kombinasi dengan pustaka OpenCV (Open Source Computer Vision Library). Berikut adalah contoh sederhana penggunaan file Haar Cascade untuk mendeteksi wajah dalam gambar menggunakan Python dan OpenCV:
+
+python
+Copy code
+import cv2
+
+# Muat gambar dari file
+image = cv2.imread('test_image.jpg')
+
+# Muat classifier Haar Cascade untuk deteksi wajah
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+
+# Konversi gambar ke skala abu-abu (grayscale)
+gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+# Deteksi wajah dalam gambar
+faces = face_cascade.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+
+# Gambar persegi panjang di sekitar wajah yang terdeteksi
+for (x, y, w, h) in faces:
+    cv2.rectangle(image, (x, y), (x+w, y+h), (255, 0, 0), 2)
+
+# Tampilkan hasil
+cv2.imshow('Wajah Terdeteksi', image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+Penjelasan Kode:
+Muat Gambar: Kode dimulai dengan memuat gambar menggunakan cv2.imread().
+Muat Classifier: Menggunakan cv2.CascadeClassifier() untuk memuat model deteksi wajah dari file haarcascade_frontalface_default.xml.
+Konversi ke Grayscale: Wajah lebih mudah dideteksi dalam gambar grayscale, sehingga gambar dikonversi menggunakan cv2.cvtColor().
+Deteksi Wajah: Fungsi detectMultiScale() digunakan untuk mendeteksi wajah dalam gambar. Fungsi ini mengembalikan koordinat kotak pembatas untuk setiap wajah yang terdeteksi.
+Gambar Kotak di Sekitar Wajah: Menggunakan cv2.rectangle() untuk menggambar persegi panjang di sekitar setiap wajah yang terdeteksi.
+Tampilkan Hasil: Gambar dengan wajah yang terdeteksi ditampilkan menggunakan cv2.imshow().
+Kelebihan dan Kekurangan
+Kelebihan: Cepat dan efektif untuk deteksi wajah dalam kondisi pencahayaan yang baik. Dapat digunakan secara real-time.
+Kekurangan: Kurang akurat dalam kondisi pencahayaan yang buruk atau sudut pandang wajah yang ekstrem. Tidak efektif untuk deteksi objek selain wajah tanpa pelatihan ulang.

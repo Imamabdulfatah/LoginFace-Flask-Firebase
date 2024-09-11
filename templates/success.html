@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Success Welcome</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .countdown {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container text-center mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="alert alert-success" role="alert">
+            <h1 class="alert-heading">Sukses Verifikasi Wajah</h1>
+            <h1>Silahkan Masuk</h1>
+            <p class="countdown">
+              Dalam<span id="countdown">7</span> Detik...
+            </p>
+            <h2>Pintu Akan Dikunci Kembali</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Countdown Script -->
+    <script
+      type="module"
+      src="{{ url_for('static', filename='js/success.js')}}"
+    ></script>
+  </body>
+</html>
